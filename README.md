@@ -6,8 +6,8 @@ Times do not account for any precomputations done before solving queries.
 ### Small (~100, D = 7)
 Algorithm | Time | 
 --- | --- | 
-`bruteforce` | 
-`bruteforce_threaded` | 
+`bruteforce` | 0.0003618
+`bruteforce_threaded` | 0.001845
 `k-d tree` | 
 
 ### Medium (~10,000, D = 100)
