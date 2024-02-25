@@ -1,5 +1,6 @@
 # Nearest Neighbor
-
+## Introduction
+Comparing different nearest neighbor algorithms such as locality sensitive hashing and k-d trees 
 ## Benchmarks
 ### Medium (~10,000, D = 100)
 Algorithm | Time | 
