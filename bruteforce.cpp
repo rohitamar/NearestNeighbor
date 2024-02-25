@@ -5,8 +5,12 @@
 #include <fstream>
 #include <thread>
 #include <mutex>
+#include <string>
 
-std::vector<std::array<int, 7>> coordinates;
+const size_t S = 250;
+const std::string typ = "large";
+
+std::vector<std::array<int, S>> coordinates;
 
 template<typename T, size_t N>
 std::istream& operator>>(std::istream& is, std::array<T, N>& arr) {
@@ -75,21 +79,21 @@ int bruteForce_threaded(const std::array<T, N> &query) {
 }
 
 int main() {
-    std::ifstream file("large");
+    std::ifstream file("./data/" + typ);
     if(!file.is_open()) {
         std::cerr << "Error: file not found\n";
         return EXIT_FAILURE;
     }
 
-    std::array<int, 7> a;
+    std::array<int, S> a;
     while(file >> a) {
         coordinates.push_back(a);
     }
 
     file.close();
-    file.open("large-q", std::ifstream::in);
+    file.open("./data/" + typ + "-q", std::ifstream::in);
 
-    std::array<int, 7> query;
+    std::array<int, S> query;
     while(file >> query) {
         auto start = std::chrono::high_resolution_clock::now();
         std::cout << bruteForce(query) << "\n";

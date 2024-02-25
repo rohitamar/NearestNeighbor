@@ -1,16 +1,16 @@
 import random
 
 if __name__ == '__main__':
-    N = 10
+    N = 10000
     Q = 1
     M = 500
-    D = 4
+    D = 100
 
-    with open('small', 'w') as f:
+    with open('med', 'w') as f:
         for _ in range(N):
             f.write(" ".join([str(random.randint(-M, M)) for _ in range(D)]) + '\n')
     
-    with open('small-q', 'w') as f:
+    with open('med-q', 'w') as f:
         for _ in range(Q):
             f.write(" ".join([str(random.randint(-M, M)) for _ in range(D)]) + '\n')
     

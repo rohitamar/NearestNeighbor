@@ -1,6 +1,6 @@
-med
-med-q
-large
-large-q
+/data/large-q
+/data/large
+/data/med
+/data/med-q
 *.out
 *.exe
