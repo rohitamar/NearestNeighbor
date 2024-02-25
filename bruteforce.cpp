@@ -75,7 +75,7 @@ int bruteForce_threaded(const std::array<T, N> &query) {
 }
 
 int main() {
-    std::ifstream file("med");
+    std::ifstream file("large");
     if(!file.is_open()) {
         std::cerr << "Error: file not found\n";
         return EXIT_FAILURE;
@@ -87,7 +87,7 @@ int main() {
     }
 
     file.close();
-    file.open("med-q", std::ifstream::in);
+    file.open("large-q", std::ifstream::in);
 
     std::array<int, 7> query;
     while(file >> query) {
@@ -95,12 +95,12 @@ int main() {
         std::cout << bruteForce(query) << "\n";
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration = end - start;
-        std::cout << duration.count() << "\n";
+        std::cout << "Time taken: " << duration.count() << "\n";
 
         start = std::chrono::high_resolution_clock::now();
         std::cout << bruteForce_threaded(query) << "\n";
         end = std::chrono::high_resolution_clock::now();
         duration = end - start;
-        std::cout << duration.count() << "\n";
+        std::cout << "Time taken: " << duration.count() << "\n";
     }
 }
