@@ -20,6 +20,6 @@ Algorithm | Time |
 ### Large (~10 million, D = 250)
 Algorithm | Time (s) | 
 --- | --- | 
-`bruteforce` | 2.453
-`bruteforce_threaded` | 0.43397
+`bruteforce` | 2.35953
+`bruteforce_threaded` | 0.344837
 `k-d tree` | 
