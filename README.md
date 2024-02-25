@@ -2,6 +2,7 @@
 ## Introduction
 Comparing different nearest neighbor algorithms such as locality sensitive hashing and k-d trees 
 ## Benchmarks
+Times do not account for any precomputations done before solving queries. 
 ### Small (~10,000, D = 100)
 Algorithm | Time | 
 --- | --- | 
