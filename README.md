@@ -13,8 +13,8 @@ Algorithm | Time |
 ### Medium (~10,000, D = 100)
 Algorithm | Time | 
 --- | --- | 
-`bruteforce` | 
-`bruteforce_threaded` | 
+`bruteforce` | 0.0098936
+`bruteforce_threaded` | 0.0033703 
 `k-d tree` | 
 
 ### Large (~10 million, D = 250)
