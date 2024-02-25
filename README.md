@@ -2,6 +2,12 @@
 ## Introduction
 Comparing different nearest neighbor algorithms such as locality sensitive hashing and k-d trees 
 ## Benchmarks
+### Small (~10,000, D = 100)
+Algorithm | Time | 
+--- | --- | 
+`bruteforce` | 
+`bruteforce_threaded` | 
+
 ### Medium (~10,000, D = 100)
 Algorithm | Time | 
 --- | --- | 
