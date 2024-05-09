@@ -1,20 +1,14 @@
 #include <iostream>
-#include <functional>
-#include <vector>
-#include <array>
-#include <fstream>
-#include <thread>
-#include <mutex>
-#include <string>
+#include <chrono>
 
 #include "bruteforce.h"
 #include "KDtree.h"
 #include "util.h"
 
-const size_t S = 100;
+const size_t D = 100;
 const std::string typ = "med";
 
-std::vector<std::array<int, S>> coordinates;
+std::vector<std::array<int, D>> coordinates;
 
 int main() {
     std::ifstream file("./data/" + typ);
@@ -23,36 +17,54 @@ int main() {
         return EXIT_FAILURE;
     }
 
-    std::array<int, S> a;
+    std::array<int, D> a;
     while(file >> a) {
         coordinates.push_back(a);
     }
 
     file.close();
 
-    KDTree<S> kdtree(coordinates);
+    KDTree<D> kdtree(coordinates);
 
     file.open("./data/" + typ + "-q", std::ifstream::in);
 
-    std::array<int, S> query;
-    while(file >> query) {
-        // auto start = std::chrono::high_resolution_clock::now();
-        int coordInd = bruteForce<int, S>(coordinates, query);
+    std::array<int, D> query;
 
-        std::cout << coordinates[coordInd] << "\n";
-        
-        std::array<int, S> ans = kdtree.nearestNeighbor(query);
-        std::cout << ans << "\n";
+    int sumQuery = 0, total = 0;
+
+    double avgTimeBruteForce = 0.0;
+    double avgTimeKDTree = 0.0;
+
+    while(file >> query) {
+        total++;
+
+        auto start = std::chrono::high_resolution_clock::now();
+        int bfInd = bruteForce<int, D>(coordinates, query);
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = end - start;
+        avgTimeBruteForce += duration.count();
+
+        start = std::chrono::high_resolution_clock::now();
+        std::array<int, D> kdTreeAns = kdtree.nearestNeighbor(query);
+        end = std::chrono::high_resolution_clock::now();
+        duration = end - start;
+        avgTimeKDTree += duration.count();
+
+        if(kdTreeAns == coordinates[bfInd]) {
+            sumQuery++;
+        }
+
         // auto end = std::chrono::high_resolution_clock::now();
         // std::chrono::duration<double> duration = end - start;
         // std::cout << "Time taken: " << duration.count() << "\n";
-
-
-
         // start = std::chrono::high_resolution_clock::now();
         // std::cout << bruteForce_threaded(query) << "\n";
         // end = std::chrono::high_resolution_clock::now();
         // duration = end - start;
         // std::cout << "Time taken: " << duration.count() << "\n";
     }
+    std::cout << "Accuracy: " << sumQuery << " / " << total << "\n"; 
+    std::cout << "Benchmarks:\n";
+    std::cout << "Average Time Brute Force: " << avgTimeBruteForce / total << "\n";
+    std::cout << "Average Time KDTree: " << avgTimeKDTree / total << "\n"; 
 }

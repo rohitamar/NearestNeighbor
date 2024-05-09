@@ -18,7 +18,7 @@ struct Node {
 template<size_t N>
 class KDTree {
     public:
-        KDTree<N>(std::vector<std::array<int, N>> pts);
+        KDTree(std::vector<std::array<int, N>> pts);
         Node<N>* buildTree(std::vector<std::array<int, N>>& pts, int depth);
         void nearest(Node<N> *cur, const std::array<int, N>& point, std::array<int, N>& closest);
         std::array<int, N> nearestNeighbor(const std::array<int, N>& point);

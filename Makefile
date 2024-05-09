@@ -1,5 +1,8 @@
-data:
-	python3 generate_data.py
+main:
+	g++ -Wall -Werror -pedantic -std=c++20 -o main main.cpp
 
-bruteforce:
-	g++ -Wall -Werror -pedantic -std=c++20 -o bruteforce bruteforce.cpp
+clean:
+	del /Q /F "./data/"
+
+newdata:
+	python3 generate_data.py
