@@ -1,11 +1,11 @@
 import random
 
 if __name__ == '__main__':
-    N = [1000, 10000, 10000000] 
-    Q = [10, 1500, 500]
-    M = [500, 500, 500]
-    D = [3, 100, 500]
-    names = ['small', 'med', 'large']
+    N = [500] 
+    Q = [1]
+    M = [500]
+    D = [3]
+    names = ['med']
 
     for n, q, m, d, name in zip(N, Q, M, D, names):
         
